@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class Post {
   static final posts = [
-    Post(Colors.amberAccent, 'Post 1', 1),
-    Post(Colors.blue, 'Post 2', 2),
-    Post(Colors.pinkAccent, 'Post 3', 3),
+    Post(const Color.fromARGB(255, 93, 141, 105), 'Post 1', 1),
+    Post(const Color.fromARGB(255, 189, 203, 100), 'Post 2', 2),
+    Post(const Color.fromARGB(255, 224, 178, 203), 'Post 3', 3),
+    Post(const Color.fromARGB(255, 98, 169, 227), 'Post 4', 4),
   ];
   final Color color;
   final String title;
@@ -17,7 +18,11 @@ class User {
   static final users = [
     User(Colors.amberAccent, 1),
     User(Colors.blue, 2),
-    User(Colors.pinkAccent, 3),
+    User(Colors.pink.shade100, 3),
+    User(Colors.green.shade300, 4),
+    User(Colors.orange.shade200, 5),
+    User(Colors.purple.shade300, 6),
+    User(Colors.grey.shade300, 7),
   ];
   final Color color;
   final int id;

@@ -1,10 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/home_page.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/posts/posts_page.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/posts/single_post_page.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/settings/settings_page.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/users/user_profile_page.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/users/users_page.dart';
+import 'package:flutter/material.dart';
+import '../home_page.dart';
+import '../posts/posts_page.dart';
+import '../posts/single_post_page.dart';
+
+import '../search_results_page.dart';
+import '../settings/settings_page.dart';
+import '../users/user_profile_page.dart';
+import '../users/users_page.dart';
+
+part 'router.gr.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -22,7 +27,11 @@ import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/users/use
           AutoRoute(
             path: ':postId',
             page: SinglePostPage,
-          )
+          ),
+          AutoRoute(
+            path: 'searchResults',
+            page: SearchResultsPage,
+          ),
         ],
       ),
       AutoRoute(
@@ -36,7 +45,12 @@ import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/users/use
           ),
           AutoRoute(
             path: ':userId',
+            usesPathAsKey: true,
             page: UserProfilePage,
+          ),
+          AutoRoute(
+            path: 'searchResults',
+            page: SearchResultsPage,
           ),
         ],
       ),
@@ -44,8 +58,14 @@ import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/users/use
         path: 'settings',
         name: 'SettingsRouter',
         page: SettingsPage,
+        children: [
+          AutoRoute(
+            path: 'searchResults',
+            page: SearchResultsPage,
+          ),
+        ],
       )
     ]),
   ],
 )
-class $AppRouter {}
+class AppRouter extends _$AppRouter {}

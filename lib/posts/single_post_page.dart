@@ -1,6 +1,7 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/data/app_data.dart';
+import '../data/app_data.dart';
+import '../routes/router.dart';
 
 class SinglePostPage extends StatelessWidget {
   final int postId;
@@ -22,14 +23,69 @@ class SinglePostPage extends StatelessWidget {
             children: [
               Text(
                 post.title,
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                textAlign: TextAlign.center,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () => context.router.push(
+                  SinglePostRoute(
+                    postId: 1,
+                  ),
+                ),
+                child: const Text('Go to Post1'),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () => context.router.push(
+                  SinglePostRoute(
+                    postId: 2,
+                  ),
+                ),
+                child: const Text('Go to Post2'),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () => context.router.push(
+                  SinglePostRoute(
+                    postId: 3,
+                  ),
+                ),
+                child: const Text('Go to Post3'),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () => context.router.push(
+                  SinglePostRoute(
+                    postId: 4,
+                  ),
+                ),
+                child: const Text('Go to Post4'),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () => context.navigateTo(
+                  UsersRouter(
+                    children: [
+                      UserProfileRoute(
+                        userId: 2,
+                      ),
+                    ],
+                  ),
+                ),
+                child: const Text('Go to Users'),
               ),
             ],
           ),

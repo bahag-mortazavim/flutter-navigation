@@ -1,123 +1,151 @@
+// **************************************************************************
+// AutoRouteGenerator
+// **************************************************************************
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // AutoRouteGenerator
 // **************************************************************************
+//
+// ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i2;
+part of 'router.dart';
 
-import '../home_page.dart' as _i3;
-import '../posts/posts_page.dart' as _i5;
-import '../posts/single_post_page.dart' as _i6;
-import '../settings/settings_page.dart' as _i4;
-import '../users/user_profile_page.dart' as _i8;
-import '../users/users_page.dart' as _i7;
-
-class AppRouter extends _i1.RootStackRouter {
-  AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+class _$AppRouter extends RootStackRouter {
+  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
-  final Map<String, _i1.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i3.HomePage();
-        }),
-    PostsRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
-    UsersRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
-    SettingsRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i4.SettingsPage();
-        }),
-    PostsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final args =
-              data.argsAs<PostsRouteArgs>(orElse: () => const PostsRouteArgs());
-          return _i5.PostsPage(key: args.key);
-        }),
-    SinglePostRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final pathParams = data.pathParams;
-          final args = data.argsAs<SinglePostRouteArgs>(
-              orElse: () =>
-                  SinglePostRouteArgs(postId: pathParams.getInt('postId')));
-          return _i6.SinglePostPage(key: args.key, postId: args.postId);
-        }),
-    UsersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i7.UsersPage();
-        }),
-    UserProfileRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final pathParams = data.pathParams;
-          final args = data.argsAs<UserProfileRouteArgs>(
-              orElse: () =>
-                  UserProfileRouteArgs(userId: pathParams.getInt('userId')));
-          return _i8.UserProfilePage(key: args.key, userId: args.userId);
-        })
+  final Map<String, PageFactory> pagesMap = {
+    HomeRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const HomePage());
+    },
+    PostsRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const EmptyRouterPage());
+    },
+    UsersRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const EmptyRouterPage());
+    },
+    SettingsRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SettingsPage());
+    },
+    PostsRoute.name: (routeData) {
+      final args = routeData.argsAs<PostsRouteArgs>(
+          orElse: () => const PostsRouteArgs());
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: PostsPage(key: args.key));
+    },
+    SinglePostRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<SinglePostRouteArgs>(
+          orElse: () =>
+              SinglePostRouteArgs(postId: pathParams.getInt('postId')));
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: SinglePostPage(key: args.key, postId: args.postId));
+    },
+    SearchResultsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SearchResultsPage());
+    },
+    UsersRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const UsersPage());
+    },
+    UserProfileRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<UserProfileRouteArgs>(
+          orElse: () =>
+              UserProfileRouteArgs(userId: pathParams.getInt('userId')));
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: UserProfilePage(key: args.key, userId: args.userId));
+    }
   };
 
   @override
-  List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeRoute.name, path: '/', children: [
-          _i1.RouteConfig(PostsRouter.name, path: 'posts', children: [
-            _i1.RouteConfig(PostsRoute.name, path: ''),
-            _i1.RouteConfig(SinglePostRoute.name, path: ':postId')
-          ]),
-          _i1.RouteConfig(UsersRouter.name, path: 'users', children: [
-            _i1.RouteConfig(UsersRoute.name, path: ''),
-            _i1.RouteConfig(UserProfileRoute.name, path: ':userId')
-          ]),
-          _i1.RouteConfig(SettingsRouter.name, path: 'settings')
+  List<RouteConfig> get routes => [
+        RouteConfig(HomeRoute.name, path: '/', children: [
+          RouteConfig(PostsRouter.name,
+              path: 'posts',
+              parent: HomeRoute.name,
+              children: [
+                RouteConfig(PostsRoute.name,
+                    path: '', parent: PostsRouter.name),
+                RouteConfig(SinglePostRoute.name,
+                    path: ':postId', parent: PostsRouter.name),
+                RouteConfig(SearchResultsRoute.name,
+                    path: 'searchResults', parent: PostsRouter.name)
+              ]),
+          RouteConfig(UsersRouter.name,
+              path: 'users',
+              parent: HomeRoute.name,
+              children: [
+                RouteConfig(UsersRoute.name,
+                    path: '', parent: UsersRouter.name),
+                RouteConfig(UserProfileRoute.name,
+                    path: ':userId',
+                    parent: UsersRouter.name,
+                    usesPathAsKey: true),
+                RouteConfig(SearchResultsRoute.name,
+                    path: 'searchResults', parent: UsersRouter.name)
+              ]),
+          RouteConfig(SettingsRouter.name,
+              path: 'settings',
+              parent: HomeRoute.name,
+              children: [
+                RouteConfig(SearchResultsRoute.name,
+                    path: 'searchResults', parent: SettingsRouter.name)
+              ])
         ])
       ];
 }
 
-class HomeRoute extends _i1.PageRouteInfo<void> {
-  const HomeRoute({List<_i1.PageRouteInfo>? children})
-      : super(name, path: '/', initialChildren: children);
+/// generated route for
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
-class PostsRouter extends _i1.PageRouteInfo<void> {
-  const PostsRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: 'posts', initialChildren: children);
+/// generated route for
+/// [EmptyRouterPage]
+class PostsRouter extends PageRouteInfo<void> {
+  const PostsRouter({List<PageRouteInfo>? children})
+      : super(PostsRouter.name, path: 'posts', initialChildren: children);
 
   static const String name = 'PostsRouter';
 }
 
-class UsersRouter extends _i1.PageRouteInfo<void> {
-  const UsersRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: 'users', initialChildren: children);
+/// generated route for
+/// [EmptyRouterPage]
+class UsersRouter extends PageRouteInfo<void> {
+  const UsersRouter({List<PageRouteInfo>? children})
+      : super(UsersRouter.name, path: 'users', initialChildren: children);
 
   static const String name = 'UsersRouter';
 }
 
-class SettingsRouter extends _i1.PageRouteInfo<void> {
-  const SettingsRouter() : super(name, path: 'settings');
+/// generated route for
+/// [SettingsPage]
+class SettingsRouter extends PageRouteInfo<void> {
+  const SettingsRouter({List<PageRouteInfo>? children})
+      : super(SettingsRouter.name, path: 'settings', initialChildren: children);
 
   static const String name = 'SettingsRouter';
 }
 
-class PostsRoute extends _i1.PageRouteInfo<PostsRouteArgs> {
-  PostsRoute({_i2.Key? key})
-      : super(name, path: '', args: PostsRouteArgs(key: key));
+/// generated route for
+/// [PostsPage]
+class PostsRoute extends PageRouteInfo<PostsRouteArgs> {
+  PostsRoute({Key? key})
+      : super(PostsRoute.name, path: '', args: PostsRouteArgs(key: key));
 
   static const String name = 'PostsRoute';
 }
@@ -125,12 +153,19 @@ class PostsRoute extends _i1.PageRouteInfo<PostsRouteArgs> {
 class PostsRouteArgs {
   const PostsRouteArgs({this.key});
 
-  final _i2.Key? key;
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PostsRouteArgs{key: $key}';
+  }
 }
 
-class SinglePostRoute extends _i1.PageRouteInfo<SinglePostRouteArgs> {
-  SinglePostRoute({_i2.Key? key, required int postId})
-      : super(name,
+/// generated route for
+/// [SinglePostPage]
+class SinglePostRoute extends PageRouteInfo<SinglePostRouteArgs> {
+  SinglePostRoute({Key? key, required int postId})
+      : super(SinglePostRoute.name,
             path: ':postId',
             args: SinglePostRouteArgs(key: key, postId: postId),
             rawPathParams: {'postId': postId});
@@ -141,20 +176,38 @@ class SinglePostRoute extends _i1.PageRouteInfo<SinglePostRouteArgs> {
 class SinglePostRouteArgs {
   const SinglePostRouteArgs({this.key, required this.postId});
 
-  final _i2.Key? key;
+  final Key? key;
 
   final int postId;
+
+  @override
+  String toString() {
+    return 'SinglePostRouteArgs{key: $key, postId: $postId}';
+  }
 }
 
-class UsersRoute extends _i1.PageRouteInfo<void> {
-  const UsersRoute() : super(name, path: '');
+/// generated route for
+/// [SearchResultsPage]
+class SearchResultsRoute extends PageRouteInfo<void> {
+  const SearchResultsRoute()
+      : super(SearchResultsRoute.name, path: 'searchResults');
+
+  static const String name = 'SearchResultsRoute';
+}
+
+/// generated route for
+/// [UsersPage]
+class UsersRoute extends PageRouteInfo<void> {
+  const UsersRoute() : super(UsersRoute.name, path: '');
 
   static const String name = 'UsersRoute';
 }
 
-class UserProfileRoute extends _i1.PageRouteInfo<UserProfileRouteArgs> {
-  UserProfileRoute({_i2.Key? key, required int userId})
-      : super(name,
+/// generated route for
+/// [UserProfilePage]
+class UserProfileRoute extends PageRouteInfo<UserProfileRouteArgs> {
+  UserProfileRoute({Key? key, required int userId})
+      : super(UserProfileRoute.name,
             path: ':userId',
             args: UserProfileRouteArgs(key: key, userId: userId),
             rawPathParams: {'userId': userId});
@@ -165,7 +218,12 @@ class UserProfileRoute extends _i1.PageRouteInfo<UserProfileRouteArgs> {
 class UserProfileRouteArgs {
   const UserProfileRouteArgs({this.key, required this.userId});
 
-  final _i2.Key? key;
+  final Key? key;
 
   final int userId;
+
+  @override
+  String toString() {
+    return 'UserProfileRouteArgs{key: $key, userId: $userId}';
+  }
 }

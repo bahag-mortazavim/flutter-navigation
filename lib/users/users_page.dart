@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/data/app_data.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/routes/router.gr.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/widgets.dart';
+import '../data/app_data.dart';
+import '../routes/router.dart';
+import '../widgets.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -11,9 +11,14 @@ class UsersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final users = User.users;
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: ListView(
+        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          PostTile(
+            tileColor: Colors.red,
+            postTitle: 'ShowSearch Results',
+            onTileTap: () => context.router.push(const SearchResultsRoute()),
+          ),
           for (int i = 0; i < users.length; i++)
             UserAvatar(
               avatarColor: users[i].color,
@@ -29,4 +34,3 @@ class UsersPage extends StatelessWidget {
     );
   }
 }
-

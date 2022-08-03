@@ -22,7 +22,7 @@ class PostTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 100,
-            vertical: 40,
+            vertical: 50,
           ),
           child: Column(
             children: [
@@ -34,7 +34,7 @@ class PostTile extends StatelessWidget {
                 ),
               ),
               const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...',
+                'This is a post',
                 textAlign: TextAlign.center,
               ),
             ],

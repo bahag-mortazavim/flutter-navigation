@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/data/app_data.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/routes/router.gr.dart';
-import 'package:flutter_bottom_navigation_with_nested_routing_tutorial/widgets.dart';
+import '../data/app_data.dart';
+import '../routes/router.dart';
+import '../widgets.dart';
 
 class PostsPage extends StatelessWidget {
   PostsPage({Key? key}) : super(key: key);
@@ -14,9 +14,13 @@ class PostsPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: [
+            PostTile(
+              tileColor: Colors.red,
+              postTitle: 'ShowSearch Results',
+              onTileTap: () => context.router.push(const SearchResultsRoute()),
+            ),
             for (int i = 0; i < posts.length; i++)
               PostTile(
                 tileColor: posts[i].color,

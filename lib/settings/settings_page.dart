@@ -27,9 +27,9 @@ class SettingsPage extends StatelessWidget {
                 vertical: 30,
               ),
               child: Text(
-                '''user234
-
-user234@email.com''',
+                '''Mohsen
+                
+mohsen@gmail.com''',
                 style: TextStyle(fontSize: 15),
                 textAlign: TextAlign.center,
               ),
