@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:go_router/go_router.dart';
+
 import '../data/app_data.dart';
 import '../routes/router.dart';
 import '../widgets.dart';
@@ -17,17 +18,14 @@ class UsersPage extends StatelessWidget {
           PostTile(
             tileColor: Colors.red,
             postTitle: 'ShowSearch Results',
-            onTileTap: () => context.router.push(const SearchResultsRoute()),
+            onTileTap: () => GoRouter.of(context).push('/users/searchResults'),
           ),
           for (int i = 0; i < users.length; i++)
             UserAvatar(
               avatarColor: users[i].color,
               username: 'user${users[i].id}',
-              onAvatarTap: () => context.router.push(
-                UserProfileRoute(
-                  userId: users[i].id,
-                ),
-              ),
+              onAvatarTap: () =>
+                  GoRouter.of(context).push('/users/${users[i].id}'),
             ),
         ],
       ),

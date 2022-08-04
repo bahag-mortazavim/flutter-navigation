@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'routes/router.dart';
 
-void main() => runApp(AppWidget());
+void main() => runApp(const AppWidget());
 
 class AppWidget extends StatelessWidget {
-  AppWidget({Key? key}) : super(key: key);
-  final _appRouter = AppRouter();
+  const AppWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Nested Routing',
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }

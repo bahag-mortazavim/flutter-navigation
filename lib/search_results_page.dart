@@ -1,9 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'bloc/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchResultsPage extends StatelessWidget implements AutoRouteWrapper {
+class SearchResultsPage extends StatelessWidget {
   const SearchResultsPage({Key? key}) : super(key: key);
 
   @override
@@ -38,7 +37,7 @@ class SearchResultsPage extends StatelessWidget implements AutoRouteWrapper {
     return BlocProvider(
       create: (_) => SearchBloc()
         ..add(SearchLoadEvent(
-            pageTitle: 'From ${context.topRoute.path}',
+            pageTitle: 'From somewhere',
             searchResults:
                 List<String>.generate(100, (index) => 'Result $index'))),
       child: this,

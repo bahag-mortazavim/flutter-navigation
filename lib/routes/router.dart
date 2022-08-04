@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../home_page.dart';
 import '../posts/posts_page.dart';
 import '../posts/single_post_page.dart';
@@ -9,63 +9,58 @@ import '../settings/settings_page.dart';
 import '../users/user_profile_page.dart';
 import '../users/users_page.dart';
 
-part 'router.gr.dart';
-
-@MaterialAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: [
-    AutoRoute(path: '/', page: HomePage, children: [
-      AutoRoute(
+final GoRouter router = GoRouter(routes: <GoRoute>[
+  GoRoute(
+    path: '/',
+    builder: (context, state) => Material(
+      child: HomePage(),
+    ),
+    routes: [
+      GoRoute(
         path: 'posts',
         name: 'PostsRouter',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(
-            path: '',
-            page: PostsPage,
-          ),
-          AutoRoute(
+        builder: (context, state) => PostsPage(),
+        routes: [
+          GoRoute(
             path: ':postId',
-            page: SinglePostPage,
+            builder: (context, state) => SinglePostPage(
+              postId: int.tryParse(state.params['postId']!) ?? -1,
+            ),
           ),
-          AutoRoute(
+          GoRoute(
             path: 'searchResults',
-            page: SearchResultsPage,
+            builder: (context, state) => const SearchResultsPage(),
           ),
         ],
       ),
-      AutoRoute(
+      GoRoute(
         path: 'users',
         name: 'UsersRouter',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(
-            path: '',
-            page: UsersPage,
-          ),
-          AutoRoute(
+        builder: (context, state) => const UsersPage(),
+        routes: [
+          GoRoute(
             path: ':userId',
-            usesPathAsKey: true,
-            page: UserProfilePage,
+            builder: (context, state) => UserProfilePage(
+              userId: int.tryParse(state.params['userId']!) ?? -1,
+            ),
           ),
-          AutoRoute(
+          GoRoute(
             path: 'searchResults',
-            page: SearchResultsPage,
+            builder: (context, state) => const SearchResultsPage(),
           ),
         ],
       ),
-      AutoRoute(
+      GoRoute(
         path: 'settings',
         name: 'SettingsRouter',
-        page: SettingsPage,
-        children: [
-          AutoRoute(
+        builder: (context, state) => const SettingsPage(),
+        routes: [
+          GoRoute(
             path: 'searchResults',
-            page: SearchResultsPage,
+            builder: (context, state) => const SearchResultsPage(),
           ),
         ],
-      )
-    ]),
-  ],
-)
-class AppRouter extends _$AppRouter {}
+      ),
+    ],
+  ),
+]);
